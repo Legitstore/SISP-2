@@ -1,0 +1,29 @@
+{% extends 'partials/main.html' %}
+{% block title %} Update Order {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4 ">
+            <div class="card">
+                <div class="card-header bg-light p-3">
+                    <h4 class="text-center">Make Request</h4>
+                </div>
+                <div class="card-body shadow">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {{field.label}}
+                            {{field}} <br>
+                        {% endfor %}
+                       
+                        <input class="btn btn-secondary btn-block" type="submit" value="Update Request">
+                        <a class="btn btn-info btn-block ms-3" href="{% url 'order' %}">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- STAFF PAGE END -->
+{% endblock %}

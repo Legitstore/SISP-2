@@ -1,0 +1,72 @@
+{% extends 'partials/main.html' %}
+{% block title %} Product Page {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<!-- Product TABLE STARTS -->
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            {% for message in messages %}
+                {% if message %}
+                    <div class="alert alert-{{ message.tags }} alert-secondary alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="border bg-white p-3 shadow rounded-3">
+                <div class="card-header bg-light p-3">
+                    <h4 class="text-center">Add Products</h4>
+                </div>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{field.label}}
+                        {{field}} <br>
+                    {% endfor %}
+
+                    <input class="btn btn-secondary btn-block" type="submit" value="Add Product">
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Unity Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col ">Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <th scope="row">{{item.id}}</th>
+                            <td>{{item.name}}</td>
+                            <td>&#8358;{{item.unityprice}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info btn-sm" href="{% url 'update' item.id %}">Edit</a>
+                                    <a class="btn btn-danger btn-sm" href="{% url 'delete' item.id %}">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Product TABLE END -->
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'partials/main.html' %}
+
+{% block title %} Register {% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3 rounded-5 shadow p-2">
+           <div class="card-header text-center">
+             <h3>Customer Registration</h3>
+           </div>
+            <hr>
+            <form class="row g-3" method="POST" novalidate class="shadow p-5">
+                {% csrf_token %}
+                {% for fm in form %}
+
+                <div class="col-md-6">
+                  <label for="validationDefault03" class="form-label">{{fm.label_tag}}</label>
+                   {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+                <div class="text-center text-primary fw-bold pb-2">
+                    <small>Existing User ? <a href="{% url 'login' %}" class="text-danger">Login Now</a></small>
+                </div>
+                
+                {% if form.non_errors %}
+                    {% for error in form.non_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alert alert-{{msg.tags}}" role="alert">
+                            {{msg}}
+
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

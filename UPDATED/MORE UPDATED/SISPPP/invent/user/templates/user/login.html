@@ -1,0 +1,51 @@
+{% extends 'partials/main.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row my-3">
+        <div  class="col-sm-4 offset-sm-4 p-2 bg-white" >
+            
+
+            <form action="" method="POST" novalidate class="">
+                <div class="card card-header mb-2">
+                    <h3 class="offset-sm-5">Login</h3>
+                    <!-- <hr> -->
+                </div>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label" style="text-align: left;">Username</label>
+                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" style="text-align: left;">Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                    <small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small>
+                    <br>
+                    {% for msg in messages %}
+                        <p class="text-danger">{{msg}}</p>
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+
+                <input type="submit" class="btn btn-primary mt-4" value="Login"> <br>
+
+                <div class="text-center text-primary fw-bold">
+                    <small>New User ? <a href="{% url 'register' %}" class="text-danger">Create an Account</a></small>
+                </div>
+                
+            </form>
+        </div>
+       
+    </div>
+
+    
+</div>
+
+{% endblock %}

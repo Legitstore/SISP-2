@@ -1,0 +1,32 @@
+{% extends 'partials/main.html' %}
+{% block title %} Product Page {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<!-- Product TABLE STARTS -->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4 offset-sm-3">
+            <div class="border bg-white p-3 shadow rounded-3">
+                <div class="card-header bg-light p-3">
+                    <h4 class="text-center">Add Products</h4>
+                </div>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{field.label}}
+                        {{field}} <br>
+                    {% endfor %}
+                    <input class="btn btn-secondary btn-block" type="submit" value="Add Product">
+                        
+                    <a class="btn btn-info btn-block ms-3" href="{% url 'product' %}">Back</a>
+            
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Product TABLE END -->
+
+{% endblock %}

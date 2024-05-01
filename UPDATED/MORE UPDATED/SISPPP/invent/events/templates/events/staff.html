@@ -1,0 +1,88 @@
+{% extends 'partials/main.html' %}
+{% block title %} Staff Page {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<!-- STAFF TABLE STARTS -->
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            <div class="border bg-white p-3 shadow rounded-3">
+
+                <div class="card-header bg-light p-3">
+                    <h4 class="text-center">Add Staff</h4>
+                </div>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% for fm in form %}
+    
+                    <div class="col-md-12">
+                      <label for="validationDefault03" class="form-label">{{fm.label_tag}}</label>
+                       {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <!-- <div class="col-12">
+                      <button class="btn btn-primary" type="submit">Submit</button>
+                    </div> -->
+                   
+                    
+                    {% if form.non_errors %}
+                        {% for error in form.non_errors %}
+                            <p class="alert alert-danger my-3">{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+    
+    
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <div class="alert alert-{{msg.tags}}" role="alert">
+                                {{msg}}
+    
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <input class="btn btn-secondary btn-block" type="submit" value="Add Staff">
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col" class="text-start">View List</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" class="text-end">Email</th>
+                        <!-- <th scope="col">Tel No.</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for worker in workers %}
+                    <tr>
+                        <th scope="row" class="text-start"><a class="btn btn-info btn-sm" href="{% url 'staff-detail' worker.id %}">View</a></th>
+                        <td>{{ worker.username|capfirst }}</td>
+                        <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+                        <td class="text-end">{{ worker.email }}</td>
+                        <!-- <td>{{ worker.profile.phone }}</td> -->
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <th scope="row" class="text-start"><a class="btn btn-info btn-sm" href="">View</a></th>
+                        <td>Legit</td>
+                        <td>Boss</td>
+                        <td>Boss@boss.com</td>
+                        <td>123 456 789</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- STAFF TABLE END -->
+{% endblock %}
+

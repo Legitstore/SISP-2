@@ -1,0 +1,53 @@
+<!-- TOP PART -->
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    Information
+                </div>
+                <div class="card-body">
+                    <marquee behavior="" direction="">
+                        <h3 class="my-4">We are here to serve you the best of our products | Programming becomes easy when you put more effort !!!</h3>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    Statistics
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'staff' %}">
+                                <div class="card my-card shadow text-center p-3">
+                                    <h4 class="d-flex align-items-center justify-content-center fw-bold">Staff <i class="bi bi-people-fill fas  ms-3"></i></h4>
+                                    <h3>{{workers_count}}</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'product' %}">
+                                <div class="card my-card shadow text-center p-3">
+                                    <h4 class="d-flex align-items-center justify-content-center fw-bold">Products <i class="bi bi-box-fill fas  ms-3"></i></h4>
+                                    <h3>{{ product_count }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'order' %}">
+                                <div class="card my-card shadow text-center p-3">
+                                    <h4 class="d-flex align-items-center justify-content-center fw-bold">Orders <i class="bi bi-truck fas  ms-3"></i></h4>
+                                    <h3>{{ orders_count }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END TOP SIDE -->

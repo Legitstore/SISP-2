@@ -1,0 +1,63 @@
+{% extends 'partials/main.html' %}
+{% block title %} Order Page {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<!-- ORDERS TABLE STARTS -->
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">U Price</th>
+                        <th scope="col">Sell Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Order by</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orders in orders %}
+                    <tr>
+                        <th scope="row">{{orders.id}}</th>
+                        <td>{{orders.product}}</td>
+                        <td>&#8358;{{orders.product.unityprice}}</td>
+                        <td>&#8358;{{orders.sellingprice}}</td>
+                        <td>{{orders.order_quantity}}</td>
+                        <td> {{orders.staff.username|capfirst}}</td>
+                        <td> {{orders.date|date:"d - m - y"}}</td>
+                        <!-- <td> {{orders.date|date:"d -m -y"}}, {{orders.date|time:"h:i a"}}</td> -->
+                        <!-- <td> {{orders.date}}</td> -->
+                        <td>
+                            <div class="btn-group">
+                            <a class="btn btn-info btn-sm" href="{% url 'updateord' orders.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'deleteord' orders.id %}">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <th scope="row">1</th>
+                        <td>Milk</td>
+                        <td>&#8358;400</td>
+                        <td>4</td>
+                        <td>John Doe</td>
+                        <td><a class="btn btn-info" href="">x</a></td>
+                    </tr>-->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- ORDERS TABLE END -->
+{% endblock %}

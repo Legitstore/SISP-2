@@ -1,0 +1,28 @@
+{% extends 'partials/main.html' %}
+{% block title %} Delete Product {% endblock title %}
+{% block content %}
+<!-- Product TABLE STARTS -->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4 offset-4">
+            <div class="border bg-white p-3 shadow rounded-3">
+                <div class="card-header bg-light p-3">
+                    <h4 class="text-center">Delete Products</h4>
+                </div>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                   <h5>Are you sure you want to delete {{item.name}} ? All of the following objects and their related items will be deleted:</p>
+
+                   <a href="{% url 'product' %}" class="btn btn-secondary btn-block me-2" >Cancel</a>
+                    <input class="btn btn-danger btn-block" type="submit" value="Delete">
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Product TABLE END -->
+
+{% endblock %}

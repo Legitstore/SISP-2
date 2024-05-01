@@ -1,0 +1,72 @@
+{% extends 'partials/main.html' %}
+{% block title %} Product Page {% endblock title %}
+{% block content %}
+
+  <!-- HISTORY TABLE STARTS -->
+  <div class="container">
+    <div class="row my-4">
+        <div class="card-header  mx-auto ">
+            <h1 class="text-center col-12">Product History Table</h1>
+        </div>
+        <div class="col-10 offset-1">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Unity Price</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>&#8358;{{item.unityprice}}</td>
+                        <td>{{item.quantity}}</td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-header  mx-auto mt-5">
+            <h1 class="text-center col-12">Orders History Table</h1>
+        </div>
+        <div class="col-10 offset-1">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Unity Price</th>
+                        <th scope="col">Selling Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Order by</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orders in orders %}
+                    <tr>
+                        <th scope="row">{{orders.id}}</th>
+                        <td>{{orders.product}}</td>
+                        <td>&#8358;{{orders.product.unityprice}}</td>
+                        <td>&#8358;{{orders.sellingprice}}</td>
+                        <td>{{orders.order_quantity}}</td>
+                        <td>{{orders.staff.username}}</td>
+                        <td>{{orders.date}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- HISTORY TABLE END -->
+
+{% endblock %}

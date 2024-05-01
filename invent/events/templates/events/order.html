@@ -1,0 +1,81 @@
+{% extends 'partials/main.html' %}
+{% block title %} Order Page {% endblock title %}
+{% block content %}
+{% include 'partials/topnav.html' %}
+<!-- ORDERS TABLE STARTS -->
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white text-center shadow table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Unity Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Order by</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orders in orders %}
+                    <tr>
+                        <th scope="row">{{orders.id}}</th>
+                        <td>{{orders.product}}</td>
+                        <td>{{orders.product.category}}</td>
+                        <td>{{orders.order_quantity}}</td>
+                        <td> {{orders.staff.username}}</td>
+                        <td> {{orders.date}}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm mx-3" href="{ url 'dashboard-product-update' item.id }">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{ url 'dashboard-product-delete' item.id }">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <th scope="row">1</th>
+                        <td>Milk</td>
+                        <td>&#8358;400</td>
+                        <td>4</td>
+                        <td>John Doe</td>
+                        <td><a class="btn btn-info" href="">x</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Milo</td>
+                        <td>&#8358;400</td>
+                        <td>2</td>
+                        <td>Legit Boss</td>
+                        <td><a class="btn btn-info" href="">x</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Chocolate</td>
+                        <td>&#8358;400</td>
+                        <td>10</td>
+                        <td>James</td>
+                        <td><a class="btn btn-info" href="">x</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Ice Cream</td>
+                        <td>&#8358;400</td>
+                        <td>5</td>
+                        <td>Marcus</td>
+                        <td><a class="btn btn-info" href="">x</a></td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- ORDERS TABLE END -->
+{% endblock %}
